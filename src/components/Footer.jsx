@@ -50,7 +50,6 @@ const Footer = () => {
           © {new Date().getFullYear()} <span className="text-pink-400">Soumya Ranjan Bhanja</span> — Built with 💖 using React & Tailwind CSS
         </p>
       </div>
-      <FloatingChat/>
     </motion.footer>
   );
 };
