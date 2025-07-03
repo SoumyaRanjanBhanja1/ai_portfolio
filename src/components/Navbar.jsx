@@ -6,14 +6,51 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-white">
         {/* Logo */}
         <Link
-          to="contact"
+          to="hero"
           smooth={true}
           duration={800}
           className="cursor-pointer hover:text-yellow-300"
         >
           <h1 className="text-xl font-bold">Soumya Ranjan</h1>
         </Link>
+
+        {/* Nav Links */}
+        <div className="space-x-6 hidden md:flex">
+          <Link
+            to="about"
+            smooth={true}
+            duration={800}
+            className="cursor-pointer hover:text-yellow-300"
+          >
+            About
+          </Link>
+          <Link
+            to="skills"
+            smooth={true}
+            duration={800}
+            className="cursor-pointer hover:text-yellow-300"
+          >
+            Skills
+          </Link>
+          <Link
+            to="projects"
+            smooth={true}
+            duration={800}
+            className="cursor-pointer hover:text-yellow-300"
+          >
+            Projects
+          </Link>
+          <Link
+            to="contact"
+            smooth={true}
+            duration={800}
+            className="cursor-pointer hover:text-yellow-300"
+          >
+            Contact
+          </Link>
         </div>
+
+        {/* External Links */}
         <div className="space-x-4 hidden md:flex">
           <a
             href="https://github.com/SoumyaRanjanBhanja1"
