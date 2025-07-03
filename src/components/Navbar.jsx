@@ -4,11 +4,13 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-indigo-800 to-purple-800 shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-white">
-        {/* Scroll to contact section when clicking on Soumya Ranjan */}
+        
+        {/* Smooth scroll to #contact on the same page */}
         <Link
           to="contact"
           smooth={true}
           duration={800}
+          offset={-80} // adjust if your navbar overlaps the section
           className="cursor-pointer hover:text-yellow-300"
         >
           <h1 className="text-xl font-bold">Soumya Ranjan</h1>
