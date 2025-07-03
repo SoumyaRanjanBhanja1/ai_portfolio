@@ -4,6 +4,7 @@ import { OrbitControls, Stars, Html, useGLTF } from "@react-three/drei";
 import { useRef, Suspense } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Contact from "./Contact";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -181,7 +182,7 @@ const Hero = () => {
           </button>
         </div>
       </section>
-
+      <Contact/>
       <Footer />
     </>
   );
