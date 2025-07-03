@@ -12,7 +12,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
 
-  const API="https://backend-user-l8s4.onrender.com";
+  const API="https://backend-user-1-hm06.onrender.com";
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
