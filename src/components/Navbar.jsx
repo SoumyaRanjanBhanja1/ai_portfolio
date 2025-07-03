@@ -1,11 +1,11 @@
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-indigo-800 to-purple-800 shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-white">
         <Link
-          to="hero"
+          to="/contact"
           spy={true}
           smooth={true}
           offset={-80}
