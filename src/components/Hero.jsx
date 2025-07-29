@@ -13,7 +13,7 @@ const projects = [
     title: "E-Commerce App",
     tech: "MERN + Razorpay",
     emoji: "🛒",
-    link: "https://your-ecommerce-app.vercel.app",
+    link: "https://mono-repo-client.vercel.app",
   },
   {
     title: "Admin Dashboard",
