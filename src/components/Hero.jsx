@@ -25,7 +25,7 @@ const projects = [
     title: "Portfolio Website",
     tech: "React + Tailwind + Framer",
     emoji: "💼",
-    link: "ai-portfolio-wheat-three.vercel.app",
+    link: "https://ai-portfolio-wheat-three.vercel.app",
   },
 ];
 
