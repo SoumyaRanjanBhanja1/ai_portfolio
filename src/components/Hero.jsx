@@ -13,19 +13,19 @@ const projects = [
     title: "E-Commerce App",
     tech: "MERN + Razorpay",
     emoji: "🛒",
-    link: "https://mono-repo-client.vercel.app",
+    link: "https://e-shop-new-fcff.vercel.app/",
   },
   {
     title: "Admin Dashboard",
     tech: "React + MUI + Charts",
     emoji: "📊",
-    link: "https://your-dashboard.vercel.app",
+    link: "https://mono-repo-client.vercel.app",
   },
   {
     title: "Portfolio Website",
     tech: "React + Tailwind + Framer",
     emoji: "💼",
-    link: "https://your-portfolio.vercel.app",
+    link: "ai-portfolio-wheat-three.vercel.app",
   },
 ];
 
