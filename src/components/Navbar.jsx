@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, FileText, Menu, X, ChevronRight } from 'lucide-react';
+import { Github, Linkedin, FileText, Menu, X, ArrowRight } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Detect scroll to change navbar appearance
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -17,10 +17,9 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About', path: '/about', isInternal: true },
-    { name: 'GitHub', path: 'https://github.com/SoumyaRanjanBhanja1', icon: Github, isInternal: false },
-    { name: 'LinkedIn', path: 'https://www.linkedin.com/in/soumya-ranjan-bhanja-270644247', icon: Linkedin, isInternal: false },
-    { name: 'Resume', path: '/resume.pdf', icon: FileText, isInternal: false },
+    { name: 'GitHub', href: 'https://github.com/SoumyaRanjanBhanja1', icon: Github, external: true },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/soumya-ranjan-bhanja-270644247', icon: Linkedin, external: true },
+    { name: 'Resume', href: '/resume.pdf', icon: FileText, external: true },
   ];
 
   return (
@@ -28,131 +27,111 @@ const Navbar = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-indigo-950/80 backdrop-blur-md shadow-lg py-3 border-b border-white/10' 
-            : 'bg-transparent py-6'
+            ? 'bg-indigo-950/80 backdrop-blur-md border-b border-white/10 shadow-lg py-3' 
+            : 'bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-white">
           
-          {/* --- BRAND LOGO --- */}
-          <Link to="/" className="relative z-50 group">
-            <div className="flex items-center gap-2">
-              <div className="relative flex items-center justify-center w-10 h-10 bg-gradient-to-tr from-yellow-400 to-purple-600 rounded-xl shadow-lg group-hover:rotate-12 transition-transform duration-300">
-                <span className="text-xl font-bold">S</span>
-              </div>
-              <div className="flex flex-col">
-                <h1 className="text-lg font-bold tracking-tight leading-none">
-                  Soumya <span className="text-indigo-400">Ranjan</span>
+          {/* Logo / Brand */}
+          <Link to="/about" className="group relative z-50">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2"
+            >
+              <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200"></div>
+                <h1 className="relative text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-200 group-hover:from-yellow-200 group-hover:to-pink-200 transition-all">
+                  Soumya<span className="font-light text-indigo-300">Ranjan</span>
                 </h1>
-                <span className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">
-                  Developer
-                </span>
               </div>
-            </div>
+            </motion.div>
           </Link>
 
-          {/* --- DESKTOP MENU --- */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => (
-              <div key={index} className="relative group">
-                {link.isInternal ? (
-                  <Link to={link.path} className="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                    {link.name}
-                  </Link>
-                ) : (
-                  <a 
-                    href={link.path} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white transition-colors"
-                  >
-                    {link.icon && <link.icon size={16} className="text-indigo-400 group-hover:text-yellow-300 transition-colors" />}
-                    {link.name}
-                  </a>
-                )}
-                {/* Animated Underline */}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
-              </div>
+              <NavLink key={index} {...link} />
             ))}
-
-            {/* CTA Button */}
+            
+            {/* CTA Button Example */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-5 py-2 bg-white text-indigo-900 rounded-full text-sm font-bold hover:bg-yellow-300 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+              className="px-5 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 font-medium text-sm shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all border border-white/10"
             >
-              Let's Talk
+              Contact Me
             </motion.button>
           </div>
 
-          {/* --- MOBILE HAMBURGER --- */}
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden z-50">
             <button 
-              onClick={() => setIsOpen(!isOpen)} 
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-white hover:text-yellow-300 transition-colors"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* --- MOBILE FULLSCREEN OVERLAY --- */}
+      {/* Mobile Full Screen Menu */}
       <AnimatePresence>
-        {isOpen && (
+        {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-[#0f0c29] md:hidden flex flex-col justify-center items-center"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-indigo-950 flex flex-col justify-center items-center md:hidden"
           >
-            {/* Background Aesthetics */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/20 blur-[100px] rounded-full pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none"></div>
+            {/* Background Gradient Orbs */}
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600/30 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-600/30 rounded-full blur-3xl" />
 
-            <div className="flex flex-col gap-6 w-full px-10">
+            <div className="relative z-10 flex flex-col gap-8 text-center">
               {navLinks.map((link, index) => (
-                <motion.div
+                <motion.a
                   key={index}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  href={link.href}
+                  target={link.external ? "_blank" : "_self"}
+                  rel={link.external ? "noopener noreferrer" : ""}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.1 }}
+                  className="text-2xl font-bold text-white/90 hover:text-yellow-300 flex items-center justify-center gap-3 group"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                   {link.isInternal ? (
-                      <Link 
-                        to={link.path} 
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-between text-2xl font-semibold text-white/80 hover:text-white border-b border-white/10 pb-4 group"
-                      >
-                        {link.name}
-                        <ChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity text-yellow-400" />
-                      </Link>
-                   ) : (
-                      <a 
-                        href={link.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-between text-2xl font-semibold text-white/80 hover:text-white border-b border-white/10 pb-4 group"
-                      >
-                        <span className="flex items-center gap-3">
-                          {link.icon && <link.icon size={24} className="text-indigo-400" />}
-                          {link.name}
-                        </span>
-                        <ChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity text-yellow-400" />
-                      </a>
-                   )}
-                </motion.div>
+                  <link.icon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  {link.name}
+                </motion.a>
               ))}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
+  );
+};
+
+// Reusable Desktop Link Component
+const NavLink = ({ name, href, icon: Icon, external }) => {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : "_self"}
+      rel={external ? "noopener noreferrer" : ""}
+      className="relative group flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300"
+    >
+      <Icon size={16} className="text-indigo-400 group-hover:text-yellow-300 transition-colors" />
+      <span className="text-sm font-medium tracking-wide">{name}</span>
+      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-300 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
+    </a>
   );
 };
 
