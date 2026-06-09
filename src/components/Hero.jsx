@@ -13,7 +13,7 @@ const projects = [
     title: "E-Commerce App",
     tech: "MERN + Razorpay",
     emoji: "🛒",
-    link: "https://agent-6a09fe009a26ec423a9ed5dc--eshopnew1.netlify.app",
+    link: "https://e-shop-new-9zbz.vercel.app/",
     color: "from-blue-400 to-cyan-300"
   },
   {
